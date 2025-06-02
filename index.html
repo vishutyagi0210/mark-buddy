@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Buddy – Smart Bookmark Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Visualization & Content Choices: 
+        1. Report Info: Key Features -> Goal: Organize/Inform -> Viz: Interactive Tabs -> Interaction: Click tabs to reveal feature details -> Justification: Breaks down complex features into digestible, user-controlled chunks, making information less overwhelming.
+        2. Report Info: Business Use Cases -> Goal: Inform/Organize -> Viz: Interactive Persona Buttons -> Interaction: Click a persona (e.g., 'Project Manager') to see a tailored benefit -> Justification: Personalizes the value proposition, making it more relatable and impactful for different user segments.
+        3. Report Info: Core benefit (organization vs. chaos) -> Goal: Compare -> Viz: Bar Chart (Chart.js) -> Interaction: A static but clear visual comparison of "Traditional Sharing" vs. "Mark Buddy" -> Justification: Quantifies the abstract benefit of "organization" into a simple, powerful visual that highlights the product's efficiency.
+    -->
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .tab-active { 
+            background-color: #f59e0b; 
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .tab-inactive { 
+            background-color: #f3f4f6; 
+            color: #374151;
+            transition: all 0.3s ease;
+        }
+        .tab-inactive:hover {
+            background-color: #e5e7eb;
+            transform: translateY(-1px);
+        }
+        .persona-active { 
+            border-color: #f59e0b; 
+            background-color: #fffbeb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in { 
+            animation: fadeIn 0.5s ease-in-out; 
+        }
+        @keyframes fadeIn { 
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
+        }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 700px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 350px; 
+            max-height: 450px; 
+        }
+        @media (min-width: 768px) { 
+            .chart-container { 
+                height: 400px; 
+            } 
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-stone-50 to-stone-100 text-slate-800 antialiased">
+
+    <header class="glass-effect sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-800 hover-scale">
+                <span class="text-amber-500">M</span>ark <span class="text-amber-500">B</span>uddy
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="hover:text-amber-500 transition-colors duration-300">Features</a>
+                <a href="#use-cases" class="hover:text-amber-500 transition-colors duration-300">Use Cases</a>
+                <a href="#why-us" class="hover:text-amber-500 transition-colors duration-300">Why Us?</a>
+            </div>
+            <a href="#" class="gradient-bg text-white font-semibold px-5 py-2 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">Get Extension</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 md:py-32 bg-gradient-to-br from-stone-100 to-stone-200">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-4 hover-scale inline-block">Stop Drowning in Links.</h1>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">Mark Buddy is the smart, modern Chrome extension to organize, manage, and share your bookmarks with effortless elegance.</p>
+                <a href="#features" class="gradient-bg text-white font-semibold px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-lg inline-block">See How It Works</a>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold hover-scale inline-block">A Feature for Every Need</h2>
+                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Explore the tools designed to boost your productivity and bring order to your bookmarks. Click a feature to learn more.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div id="feature-tabs" class="flex md:flex-col md:w-1/3 space-x-2 md:space-x-0 md:space-y-2 overflow-x-auto pb-2">
+                        <button data-feature="categorization" class="feature-tab tab-active w-full text-left whitespace-nowrap px-6 py-4 rounded-lg font-semibold transition-all duration-300">✨ Smart Categorization</button>
+                        <button data-feature="search" class="feature-tab tab-inactive w-full text-left whitespace-nowrap px-6 py-4 rounded-lg font-semibold transition-all duration-300">🔍 Advanced Search</button>
+                        <button data-feature="export" class="feature-tab tab-inactive w-full text-left whitespace-nowrap px-6 py-4 rounded-lg font-semibold transition-all duration-300">📤 Effortless Export</button>
+                        <button data-feature="sharing" class="feature-tab tab-inactive w-full text-left whitespace-nowrap px-6 py-4 rounded-lg font-semibold transition-all duration-300">🤝 Seamless Sharing</button>
+                        <button data-feature="ui" class="feature-tab tab-inactive w-full text-left whitespace-nowrap px-6 py-4 rounded-lg font-semibold transition-all duration-300">🎨 Modern UI</button>
+                    </div>
+                    <div class="md:w-2/3 bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <div id="feature-content" class="fade-in">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us" class="py-16 md:py-24 bg-gradient-to-br from-stone-100 to-stone-200">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold hover-scale inline-block">Why Choose Mark Buddy?</h2>
+                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Go from cluttered to curated. Here's how Mark Buddy elevates your workflow.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white p-8 rounded-xl shadow-md feature-card">
+                        <div class="text-4xl mb-4 hover-scale inline-block">📋</div>
+                        <h3 class="text-xl font-semibold mb-2">End Link Dumps</h3>
+                        <p class="text-slate-600">Share clean, organized bookmark files instead of messy, endless lists in emails or chats. Make a professional impression.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md feature-card">
+                        <div class="text-4xl mb-4 hover-scale inline-block">🔄</div>
+                        <h3 class="text-xl font-semibold mb-2">Easy Migration</h3>
+                        <p class="text-slate-600">Move your entire bookmark library between devices or browsers in seconds. Your resources are always with you.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md feature-card">
+                        <div class="text-4xl mb-4 hover-scale inline-block">🚀</div>
+                        <h3 class="text-xl font-semibold mb-2">Productivity Boost</h3>
+                        <p class="text-slate-600">Spend less time searching and more time doing. Find exactly what you need, when you need it, and stay in your flow state.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="use-cases" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold hover-scale inline-block">Built for Professionals</h2>
+                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Mark Buddy isn't just for personal use. Select a role to see how it streamlines professional workflows.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="w-full lg:w-1/3 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-4">
+                        <button data-persona="pm" class="persona-btn p-4 border-2 rounded-lg text-left persona-active">
+                            <h4 class="font-semibold">Project Manager</h4>
+                            <p class="text-sm text-slate-500">Organize by client & project.</p>
+                        </button>
+                        <button data-persona="team" class="persona-btn p-4 border-2 rounded-lg text-left">
+                            <h4 class="font-semibold">Team Member</h4>
+                            <p class="text-sm text-slate-500">Collaborate with shared lists.</p>
+                        </button>
+                        <button data-persona="knowledge" class="persona-btn p-4 border-2 rounded-lg text-left">
+                            <h4 class="font-semibold">Knowledge Manager</h4>
+                            <p class="text-sm text-slate-500">Create training libraries.</p>
+                        </button>
+                         <button data-persona="client" class="persona-btn p-4 border-2 rounded-lg text-left">
+                            <h4 class="font-semibold">Client Facing</h4>
+                            <p class="text-sm text-slate-500">Share project deliverables.</p>
+                        </button>
+                    </div>
+                    <div class="w-full lg:w-2/3 bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 min-h-[200px]">
+                         <div id="persona-content" class="fade-in">
+                           </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="comparison" class="py-16 md:py-24 bg-stone-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">A Clearer Way to Share</h2>
+                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Visualizing the difference. Mark Buddy simplifies sharing, making it more efficient and professional.</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </section> -->
+
+    </main>
+
+    <footer class="bg-gradient-to-br from-slate-800 to-slate-900 text-stone-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold text-white mb-2 hover-scale inline-block">Ready to Organize Your Digital Life?</h3>
+            <p class="mb-6">Extract, migrate, and share with ease—never lose a link again!</p>
+            <a href="#" class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-block">Get Mark Buddy for Chrome</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const featureData = {
+                categorization: {
+                    title: '✨ Smart Categorization',
+                    description: 'Organize bookmarks into custom categories with intelligent suggestions. Our beautiful, intuitive user interface helps you keep your digital library tidy and instantly accessible. Stop scrolling, start finding.'
+                },
+                search: {
+                    title: '🔍 Advanced Filtering & Search',
+                    description: 'Instantly find any bookmark with powerful search capabilities. Filter your collection by date ranges or sort them alphabetically (A-Z or Z-A) to pinpoint the exact link you need in seconds.'
+                },
+                export: {
+                    title: '📤 Effortless Export & Migration',
+                    description: 'Export all bookmarks from any category into a clean, professional .txt file for easy sharing. Or, migrate your entire collection with a single click using our proprietary .mrk files. Moving browsers has never been easier.'
+                },
+                sharing: {
+                    title: '🤝 Seamless Sharing',
+                    description: 'Share entire categories or filtered bookmark sets with friends, colleagues, or across your own devices. Ideal for teams, learning groups, or content creators who need to distribute resources efficiently.'
+                },
+                ui: {
+                    title: '🎨 Modern, Themeable UI',
+                    description: 'Enjoy a sleek, responsive interface that adapts to your preferences. Mark Buddy features both light and dark modes, plus customizable color themes that match your personal style and reduce eye strain.'
+                }
+            };
+            
+            const personaData = {
+                pm: {
+                    title: 'For the Project Manager',
+                    description: 'Juggle multiple projects with ease by organizing bookmarks by client, project, or phase. Ensure your entire team has instant, categorized access to critical resources, keeping everyone aligned and on schedule.'
+                },
+                team: {
+                    title: 'For the Team Member',
+                    description: 'Collaborate more effectively by sharing curated bookmark collections in seconds. Eliminate lengthy email threads and scattered links in chat. Get the information you need from colleagues in a structured, professional file.'
+                },
+                knowledge: {
+                    title: 'For the Knowledge Manager',
+                    description: 'Create and distribute centralized bookmark libraries for onboarding new hires, facilitating training sessions, or building comprehensive reference guides. Keep your team informed with a single source of truth.'
+                },
+                client: {
+                    title: 'For Client-Facing Roles',
+                    description: 'Impress your clients by quickly exporting and sharing project-specific bookmarks. Provide all necessary resources, links, and references in one professional, easy-to-digest .txt file.'
+                }
+            };
+
+            const featureTabs = document.querySelectorAll('.feature-tab');
+            const featureContent = document.getElementById('feature-content');
+
+            function updateFeatureContent(featureKey) {
+                const data = featureData[featureKey];
+                featureContent.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
+                    <p class="text-slate-600 text-lg">${data.description}</p>
+                `;
+                featureContent.classList.remove('fade-in');
+                void featureContent.offsetWidth; 
+                featureContent.classList.add('fade-in');
+            }
+
+            featureTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    featureTabs.forEach(t => t.classList.replace('tab-active', 'tab-inactive'));
+                    tab.classList.replace('tab-inactive', 'tab-active');
+                    updateFeatureContent(tab.dataset.feature);
+                });
+            });
+
+            updateFeatureContent('categorization');
+            
+            const personaBtns = document.querySelectorAll('.persona-btn');
+            const personaContent = document.getElementById('persona-content');
+            
+            function updatePersonaContent(personaKey){
+                const data = personaData[personaKey];
+                 personaContent.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
+                    <p class="text-slate-600 text-lg">${data.description}</p>
+                `;
+                personaContent.classList.remove('fade-in');
+                void personaContent.offsetWidth; 
+                personaContent.classList.add('fade-in');
+            }
+            
+            personaBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    personaBtns.forEach(b => b.classList.remove('persona-active'));
+                    btn.classList.add('persona-active');
+                    updatePersonaContent(btn.dataset.persona);
+                })
+            });
+            
+            updatePersonaContent('pm');
+
+            const ctx = document.getElementById('comparisonChart').getContext('2d');
+            const comparisonChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Efficiency', 'Clarity', 'Professionalism'],
+                    datasets: [{
+                        label: 'Traditional Sharing (Email, Chat)',
+                        data: [3, 2, 4],
+                        backgroundColor: '#e5e7eb',
+                        borderColor: '#9ca3af',
+                        borderWidth: 1
+                    }, {
+                        label: 'Mark Buddy Sharing',
+                        data: [9, 10, 9],
+                        backgroundColor: '#f59e0b',
+                        borderColor: '#d97706',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 10,
+                             grid: {
+                                color: '#f1f5f9'
+                            }
+                        },
+                        y: {
+                             grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Sharing Method Effectiveness (Score out of 10)'
+                        }
+                    }
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
