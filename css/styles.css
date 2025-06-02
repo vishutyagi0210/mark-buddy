@@ -1,0 +1,146 @@
+/* Base styles */
+:root {
+    --primary: #f59e0b;
+    --primary-dark: #d97706;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f9fafb;
+    --bg-dark: #111827;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Enhanced Component Styles */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    transition: all 0.3s ease;
+}
+
+.gradient-bg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Card Styles */
+.feature-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+/* Enhanced Tab Styles */
+.tab-active {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-inactive {
+    background-color: #f3f4f6;
+    color: var(--text-dark);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-inactive:hover {
+    background-color: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+/* Enhanced Persona Button Styles */
+.persona-active {
+    border-color: var(--primary);
+    background-color: #fffbeb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Enhanced Link Styles */
+a {
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+/* Enhanced Button Styles */
+button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-4px);
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-dark: #f9fafb;
+        --text-light: #d1d5db;
+        --bg-light: #1f2937;
+        --bg-dark: #111827;
+    }
+    
+    .glass-effect {
+        background: rgba(17, 24, 39, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .feature-card {
+        background-color: var(--bg-light);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .tab-inactive {
+        background-color: var(--bg-light);
+        color: var(--text-light);
+    }
+    
+    .tab-inactive:hover {
+        background-color: #374151;
+    }
+} 

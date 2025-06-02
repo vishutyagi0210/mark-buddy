@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Mark Buddy</title>
+    <!-- Local CSS and JS files -->
+    <link rel="stylesheet" href="css/tailwind.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Local font files -->
+    <link rel="stylesheet" href="fonts/inter.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .highlight {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-stone-50 to-stone-100 text-slate-800 antialiased">
+    <header class="glass-effect sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-slate-800 hover-scale">
+                <span class="text-amber-500">M</span>ark <span class="text-amber-500">B</span>uddy
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html#features" class="hover:text-amber-500 transition-colors duration-300">Features</a>
+                <a href="index.html#use-cases" class="hover:text-amber-500 transition-colors duration-300">Use Cases</a>
+                <a href="index.html#why-us" class="hover:text-amber-500 transition-colors duration-300">Why Us?</a>
+                <a href="privacy-policy.html" class="hover:text-amber-500 transition-colors duration-300">Privacy Policy</a>
+            </div>
+            <a href="#" class="gradient-bg text-white font-semibold px-5 py-2 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">Get Extension</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+            <h1 class="text-4xl font-bold mb-8">Privacy Policy</h1>
+            
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">1. Introduction</h2>
+                <p class="text-slate-600 mb-4">Mark Buddy is a Chrome extension designed to help you organize and manage your bookmarks. This privacy policy explains how we handle your data and what information we access.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">2. Data Collection and Storage</h2>
+                <div class="highlight">
+                    <p class="text-slate-600"><strong>Important:</strong> Mark Buddy does not collect, store, or process any data on external servers. All data is stored locally in your browser using Chrome's built-in storage and sync capabilities.</p>
+                </div>
+                <p class="text-slate-600 mb-4">We access the following data, all of which is stored locally in your browser:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li>Your existing bookmarks (stored in Chrome's native bookmark system)</li>
+                    <li>Custom categories and organization preferences (stored in Chrome's sync storage)</li>
+                    <li>UI preferences and settings (stored in Chrome's local storage)</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">3. How We Use Your Data</h2>
+                <p class="text-slate-600 mb-4">Your data is used exclusively for:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li>Displaying and organizing your bookmarks</li>
+                    <li>Managing custom categories</li>
+                    <li>Enabling bookmark export and import</li>
+                    <li>Storing your preferences</li>
+                </ul>
+                <p class="text-slate-600 mb-4">We do not:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li>Collect personal information</li>
+                    <li>Track browsing behavior</li>
+                    <li>Share data with third parties</li>
+                    <li>Use data for advertising</li>
+                    <li>Store data on external servers</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">4. Data Storage and Sync</h2>
+                <p class="text-slate-600 mb-4">All data is stored in your browser using Chrome's native storage systems:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li>Bookmarks are stored in Chrome's bookmark manager</li>
+                    <li>Settings and preferences are stored in Chrome's sync storage</li>
+                    <li>If you enable Chrome sync, your data will be synced across your devices using Chrome's built-in sync feature</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">5. Permissions We Use</h2>
+                <p class="text-slate-600 mb-4">Mark Buddy requires the following permissions, all of which are used locally:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li><strong>bookmarks:</strong> To access and manage your bookmarks</li>
+                    <li><strong>storage:</strong> To save your preferences and settings</li>
+                    <li><strong>tabs:</strong> To access current tab information when adding bookmarks</li>
+                    <li><strong>activeTab:</strong> To get current page information when you add a bookmark</li>
+                    <li><strong>notifications:</strong> To show local notifications for actions</li>
+                    <li><strong>contextMenus:</strong> To add right-click menu options for quick bookmarking</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">6. Your Control Over Data</h2>
+                <p class="text-slate-600 mb-4">You have complete control over your data:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li>Export your bookmarks at any time</li>
+                    <li>Delete the extension to remove all local data</li>
+                    <li>Control sync settings through Chrome</li>
+                    <li>Modify or delete bookmarks at any time</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">7. No Remote Code</h2>
+                <p class="text-slate-600 mb-4">Mark Buddy does not use any remote code. All functionality is contained within the extension package, and we do not:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-4">
+                    <li>Load external scripts</li>
+                    <li>Use remote modules</li>
+                    <li>Execute code from external sources</li>
+                    <li>Use eval() or similar functions</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">8. Changes to This Policy</h2>
+                <p class="text-slate-600">We may update this privacy policy from time to time. Any changes will be reflected in the "Last updated" date at the top of this page.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">9. Contact</h2>
+                <p class="text-slate-600">If you have any questions about this Privacy Policy, please visit:</p>
+                <p class="text-slate-600">Website: <a href="https://makebunny.tyagi.cloud/" class="text-amber-500 hover:text-amber-600">https://makebunny.tyagi.cloud/</a></p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gradient-to-br from-slate-800 to-slate-900 text-stone-300 py-12 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold text-white mb-2 hover-scale inline-block">Ready to Organize Your Digital Life?</h3>
+            <p class="mb-6">Extract, migrate, and share with ease—never lose a link again!</p>
+            <a href="#" class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-block">Get Mark Buddy for Chrome</a>
+        </div>
+    </footer>
+</body>
+</html> 
