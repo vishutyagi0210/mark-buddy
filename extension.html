@@ -70,6 +70,7 @@
             position: relative;
             width: 100%;
             margin: 0 auto;
+            padding: 0 12px;
         }
         
         .gallery-viewport {
@@ -86,7 +87,7 @@
         
         .gallery-item {
             flex: none;
-            padding: 0 12px;
+            padding: 0 8px;
         }
         
         .gallery-card {
@@ -113,7 +114,7 @@
         }
         
         .gallery-content {
-            padding: 20px;
+            padding: 16px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -162,8 +163,8 @@
             z-index: 10;
             background: white;
             border-radius: 50%;
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -186,11 +187,11 @@
         }
         
         .gallery-nav.prev {
-            left: -24px;
+            left: 0;
         }
         
         .gallery-nav.next {
-            right: -24px;
+            right: 0;
         }
         
         /* Indicators */
@@ -228,6 +229,7 @@
         .section-header {
             text-align: center;
             margin-bottom: 32px;
+            padding: 0 16px;
         }
         
         .section-title {
@@ -242,50 +244,10 @@
             font-size: 16px;
         }
         
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .gallery-nav {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .gallery-nav.prev {
-                left: -20px;
-            }
-            
-            .gallery-nav.next {
-                right: -20px;
-            }
-            
-            .gallery-image {
-                height: 160px;
-            }
-            
-            .gallery-content {
-                padding: 16px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .gallery-nav.prev {
-                left: -16px;
-            }
-            
-            .gallery-nav.next {
-                right: -16px;
-            }
-            
-            .gallery-item {
-                padding: 0 8px;
-            }
-        }
-        
+        /* Mobile Menu Styles */
         .mobile-menu-bg {
-            background: rgba(30, 41, 59, 0.45);
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(8px);
             position: fixed;
             inset: 0;
             z-index: 50;
@@ -293,49 +255,148 @@
             align-items: flex-start;
             justify-content: center;
         }
+        
         .mobile-menu {
             background: white;
-            border-radius: 18px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-            margin-top: 32px;
-            width: 92vw;
-            max-width: 420px;
-            padding: 2rem 1.5rem 1.5rem 1.5rem;
-            animation: slideDown 0.35s cubic-bezier(0.4,0,0.2,1);
+            border-radius: 24px 24px 0 0;
+            box-shadow: 0 -8px 40px rgba(0,0,0,0.18);
+            margin-top: auto;
+            width: 100%;
+            padding: 2rem 1.5rem 2rem 1.5rem;
+            animation: slideUp 0.35s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
         }
+        
         .mobile-menu.hide {
-            animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1) forwards;
+            animation: slideDown 0.25s cubic-bezier(0.4,0,0.2,1) forwards;
         }
+        
         .mobile-menu-link {
             display: block;
             font-size: 1.25rem;
             font-weight: 600;
             color: #334155;
             padding: 1rem 0;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
-            transition: background 0.2s, color 0.2s, transform 0.2s;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
         }
+        
         .mobile-menu-link:hover {
             background: #f59e0b22;
             color: #d97706;
-            transform: scale(1.04);
+            transform: scale(1.02);
         }
+        
         .mobile-menu-close {
             position: absolute;
-            top: 18px;
-            right: 18px;
+            top: 16px;
+            right: 16px;
             background: none;
             border: none;
             font-size: 2rem;
             color: #64748b;
             cursor: pointer;
             z-index: 10;
-            transition: color 0.2s;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
-        .mobile-menu-close:hover { color: #f59e0b; }
+        
+        .mobile-menu-close:hover { 
+            color: #f59e0b;
+            background: #f59e0b11;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-container {
+                padding: 0 8px;
+            }
+            
+            .gallery-nav {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .gallery-image {
+                height: 180px;
+            }
+            
+            .gallery-content {
+                padding: 12px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .section-subtitle {
+                font-size: 14px;
+            }
+            
+            .gallery-title {
+                font-size: 14px;
+            }
+            
+            .video-link {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-item {
+                padding: 0 6px;
+            }
+            
+            .gallery-image {
+                height: 160px;
+            }
+            
+            .gallery-card {
+                border-radius: 12px;
+            }
+            
+            .gallery-content {
+                padding: 10px;
+            }
+            
+            .gallery-title {
+                font-size: 13px;
+            }
+            
+            .video-link {
+                font-size: 15px;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(100%);
+            }
+        }
+        
         @media (min-width: 768px) {
-            .mobile-menu-bg { display: none !important; }
+            .mobile-menu-bg { 
+                display: none !important; 
+            }
         }
     </style>
 </head>
@@ -363,12 +424,14 @@
 
     <!-- Mobile Hamburger Menu -->
     <div id="mobile-menu-bg" class="mobile-menu-bg hidden">
-        <div class="mobile-menu relative">
+        <div class="mobile-menu">
             <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
-            <a href="index.html#features" class="mobile-menu-link">Features</a>
-            <a href="index.html#use-cases" class="mobile-menu-link">Use Cases</a>
-            <a href="index.html#why-us" class="mobile-menu-link">Why Us?</a>
-            <a href="privacy-policy.html" class="mobile-menu-link">Privacy Policy</a>
+            <nav class="flex flex-col space-y-2">
+                <a href="index.html#features" class="mobile-menu-link">Features</a>
+                <a href="index.html#use-cases" class="mobile-menu-link">Use Cases</a>
+                <a href="index.html#why-us" class="mobile-menu-link">Why Us?</a>
+                <a href="privacy-policy.html" class="mobile-menu-link">Privacy Policy</a>
+            </nav>
         </div>
     </div>
 
@@ -377,10 +440,10 @@
         <!-- Hero Section -->
         <div class="text-center mb-16 animate-fade-in">
             <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-                Extension Gallery
+                Extension Download
             </h1>
             <p class="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                Explore Mark Buddy's powerful features through screenshots and videos
+                Explore Mark Buddy's features through screenshots and videos. The extension is currently in the review stage by the Google Web Store. once it's live, you will receive the URL to download it directly.
             </p>
         </div>
 
@@ -393,19 +456,19 @@
             
             <!-- General Screenshots -->
             <div class="mb-12">
-                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">General Features</h3>
+                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Export & Query</h3>
                 <div id="general-gallery" class="gallery-container"></div>
             </div>
             
             <!-- Dark Mode Screenshots -->
             <div class="mb-12">
-                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Dark Mode</h3>
+                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Mode @1</h3>
                 <div id="dark-gallery" class="gallery-container"></div>
             </div>
             
             <!-- Light Mode Screenshots -->
             <div class="mb-12">
-                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Light Mode</h3>
+                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Mode @2</h3>
                 <div id="light-gallery" class="gallery-container"></div>
             </div>
         </section>
@@ -414,7 +477,7 @@
         <section class="animate-slide-up">
             <div class="section-header">
                 <h2 class="section-title">Video Tutorials</h2>
-                <p class="section-subtitle">Learn how to use Mark Buddy effectively</p>
+                <p class="section-subtitle">Get instant clarification if you get stuck at any point.</p>
             </div>
             <div id="video-gallery" class="gallery-container"></div>
         </section>
