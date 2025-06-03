@@ -514,8 +514,8 @@ class ModernGallery {
 // Gallery data - URL encoded for spaces in filenames
 const galleries = {
     general: [
-        { src: 'photos/extract data screenshot.png', title: 'Extract Data Feature' },
-        { src: 'photos/google form.png', title: 'Google Form Integration' },
+        { src: 'photos/extract data screenshot.png', title: 'Form' },
+        { src: 'photos/google form.png', title: 'Extract/Inport Data interface' },
     ],
     darkMode: [
         { src: 'photos/dark-mode/first.png', title: 'Dashborad & Export Bookmarks' },
