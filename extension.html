@@ -31,6 +31,14 @@
                         pulseSoft: {
                             '0%, 100%': { opacity: '1' },
                             '50%': { opacity: '0.8' }
+                        },
+                        slideDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-30px) scaleY(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scaleY(1)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '1', transform: 'translateY(0) scaleY(1)' },
+                            '100%': { opacity: '0', transform: 'translateY(-30px) scaleY(0.95)' }
                         }
                     }
                 }
@@ -275,20 +283,94 @@
                 padding: 0 8px;
             }
         }
+        
+        .mobile-menu-bg {
+            background: rgba(30, 41, 59, 0.45);
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .mobile-menu {
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+            margin-top: 32px;
+            width: 92vw;
+            max-width: 420px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            animation: slideDown 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .mobile-menu.hide {
+            animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1) forwards;
+        }
+        .mobile-menu-link {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #334155;
+            padding: 1rem 0;
+            border-radius: 10px;
+            text-align: center;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .mobile-menu-link:hover {
+            background: #f59e0b22;
+            color: #d97706;
+            transform: scale(1.04);
+        }
+        .mobile-menu-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #64748b;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+        .mobile-menu-close:hover { color: #f59e0b; }
+        @media (min-width: 768px) {
+            .mobile-menu-bg { display: none !important; }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-800 antialiased min-h-screen">
     <!-- Header -->
     <header class="glass-effect sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-slate-800 transition-transform hover:scale-105">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold text-slate-800 hover-scale">
                 <span class="text-amber-500">M</span>ark <span class="text-amber-500">B</span>uddy
             </a>
-            <a href="#" class="gradient-bg text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                Get Extension
-            </a>
+            <!-- Centered nav links (desktop only) -->
+            <div class="hidden md:flex flex-1 justify-center items-center space-x-6">
+                <a href="index.html#features" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Features</a>
+                <a href="index.html#use-cases" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Use Cases</a>
+                <a href="index.html#why-us" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Why Us?</a>
+                <a href="privacy-policy.html" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Privacy Policy</a>
+            </div>
+            <!-- Right-side items -->
+            <div class="flex items-center space-x-4">
+                <a href="extension.html" class="gradient-bg text-white font-semibold px-5 py-2 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">Get Extension</a>
+                <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">☰</button>
+            </div>
         </nav>
     </header>
+
+    <!-- Mobile Hamburger Menu -->
+    <div id="mobile-menu-bg" class="mobile-menu-bg hidden">
+        <div class="mobile-menu relative">
+            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
+            <a href="index.html#features" class="mobile-menu-link">Features</a>
+            <a href="index.html#use-cases" class="mobile-menu-link">Use Cases</a>
+            <a href="index.html#why-us" class="mobile-menu-link">Why Us?</a>
+            <a href="privacy-policy.html" class="mobile-menu-link">Privacy Policy</a>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12 max-w-7xl">
@@ -339,5 +421,32 @@
     </main>
 
     <script src="extension.js"></script>
+    <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenuBg = document.getElementById('mobile-menu-bg');
+    const mobileMenu = mobileMenuBg.querySelector('.mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    function openMobileMenu() {
+        mobileMenuBg.classList.remove('hidden');
+        mobileMenu.classList.remove('hide');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+        mobileMenu.classList.add('hide');
+        setTimeout(() => {
+            mobileMenuBg.classList.add('hidden');
+            mobileMenu.classList.remove('hide');
+            document.body.style.overflow = '';
+        }, 250);
+    }
+    menuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuBg.addEventListener('click', (e) => {
+        if (e.target === mobileMenuBg) closeMobileMenu();
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    </script>
 </body>
 </html>
