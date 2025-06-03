@@ -341,6 +341,36 @@ class ModernGallery {
         closeBtn.setAttribute('aria-label', 'Close gallery');
         closeBtn.onclick = () => this.closeModal();
         modal.appendChild(closeBtn);
+        // Restore left arrow button
+        if (this.items.length > 1) {
+            const left = document.createElement('button');
+            left.className = 'gallery-modal-arrow left';
+            left.setAttribute('aria-label', 'Previous image');
+            left.onclick = (e) => { 
+                e.stopPropagation(); 
+                this.modalPrev(); 
+            };
+            if (this.modalIndex === 0) {
+                left.style.opacity = '0.3';
+                left.style.pointerEvents = 'none';
+            }
+            modal.appendChild(left);
+        }
+        // Restore right arrow button
+        if (this.items.length > 1) {
+            const right = document.createElement('button');
+            right.className = 'gallery-modal-arrow right';
+            right.setAttribute('aria-label', 'Next image');
+            right.onclick = (e) => { 
+                e.stopPropagation(); 
+                this.modalNext(); 
+            };
+            if (this.modalIndex === this.items.length - 1) {
+                right.style.opacity = '0.3';
+                right.style.pointerEvents = 'none';
+            }
+            modal.appendChild(right);
+        }
         // Image
         const img = document.createElement('img');
         img.className = 'gallery-modal-image';
@@ -355,8 +385,8 @@ class ModernGallery {
         // Store references for navigation
         this.modalImg = img;
         this.modalTitle = title;
-        this.modalLeftArrow = null;
-        this.modalRightArrow = null;
+        this.modalLeftArrow = modal.querySelector('.gallery-modal-arrow.left');
+        this.modalRightArrow = modal.querySelector('.gallery-modal-arrow.right');
         // Keyboard navigation
         this._modalKeyHandler = (e) => {
             if (e.key === 'Escape') this.closeModal();
