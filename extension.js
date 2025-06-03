@@ -131,16 +131,16 @@ class ModernGallery {
             img.style.cursor = 'zoom-in';
             // Add zoom icon overlay
             const zoomIcon = document.createElement('span');
-            // zoomIcon.innerHTML = '<svg width="32" height="32" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
-            // zoomIcon.style.position = 'absolute';
-            // zoomIcon.style.bottom = '16px';
-            // zoomIcon.style.right = '16px';
-            // zoomIcon.style.background = 'rgba(255,255,255,0.85)';
-            // zoomIcon.style.borderRadius = '50%';
-            // zoomIcon.style.padding = '4px';
-            // zoomIcon.style.pointerEvents = 'none';
-            // zoomIcon.style.opacity = '0.85';
-            // zoomIcon.style.transition = 'opacity 0.2s';
+            zoomIcon.innerHTML = '<svg width="32" height="32" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+            zoomIcon.style.position = 'absolute';
+            zoomIcon.style.bottom = '16px';
+            zoomIcon.style.right = '16px';
+            zoomIcon.style.background = 'rgba(255,255,255,0.85)';
+            zoomIcon.style.borderRadius = '50%';
+            zoomIcon.style.padding = '4px';
+            zoomIcon.style.pointerEvents = 'none';
+            zoomIcon.style.opacity = '0.85';
+            zoomIcon.style.transition = 'opacity 0.2s';
             const imgWrapper = document.createElement('div');
             imgWrapper.style.position = 'relative';
             imgWrapper.appendChild(img);
