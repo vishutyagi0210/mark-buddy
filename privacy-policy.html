@@ -10,8 +10,8 @@
     <div class="min-h-screen flex flex-col">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b border-blue-100">
-            <div class="max-w-3xl mx-auto px-4 py-6 flex items-center justify-between">
-                <h1 class="text-3xl font-extrabold text-blue-700 tracking-tight flex items-center">
+            <div class="max-w-3xl mx-auto px-4 py-4 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-700 tracking-tight flex items-center">
                     <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none">
                         <defs>
                             <linearGradient id="shieldGradient" x1="0" y1="0" x2="0" y2="1">
@@ -35,39 +35,39 @@
                     </svg>
                     Mark Buddy
                 </h1>
-                <a href="https://markbuddy.tyagi.cloud" class="text-blue-600 hover:text-blue-800 font-medium transition">Back to Home</a>
+                <a href="https://markbuddy.tyagi.cloud" class="text-blue-600 hover:text-blue-800 font-medium transition text-base sm:text-lg">Back to Home</a>
             </div>
         </header>
 
         <!-- Main Content -->
-        <main class="flex-1 max-w-3xl mx-auto px-4 py-10">
+        <main class="flex-1 max-w-3xl mx-auto px-2 sm:px-4 py-6 sm:py-10 w-full">
             <!-- Trust Badge -->
-            <div class="flex items-center bg-green-100 border border-green-300 rounded-xl p-6 mb-8 shadow-sm">
-                <svg class="w-10 h-10 text-green-600 mr-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            <div class="flex flex-col sm:flex-row items-center bg-green-100 border border-green-300 rounded-xl p-4 sm:p-6 mb-8 shadow-sm text-center sm:text-left">
+                <svg class="w-10 h-10 text-green-600 mb-2 sm:mb-0 sm:mr-4 mx-auto sm:mx-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                 <div>
-                    <h2 class="text-2xl font-bold text-green-800">100% Local. 100% Private.</h2>
-                    <p class="text-green-700 mt-1">Your data never leaves your device. Mark Buddy operates entirely within your browser for maximum privacy and security.</p>
+                    <h2 class="text-xl sm:text-2xl font-bold text-green-800">100% Local. 100% Private.</h2>
+                    <p class="text-green-700 mt-1 text-sm sm:text-base">Your data never leaves your device. Mark Buddy operates entirely within your browser for maximum privacy and security.</p>
                 </div>
             </div>
 
-            <div class="text-sm text-gray-500 mb-8 text-right">Last Updated: March 2024</div>
+            <div class="text-xs sm:text-sm text-gray-500 mb-8 text-right">Last Updated: March 2024</div>
 
             <!-- Introduction -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Introduction</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-400">
-                    <p class="text-gray-700 leading-relaxed">
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Introduction</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-blue-400">
+                    <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
                         Mark Buddy is a Chrome extension that helps you organize your bookmarks using smart categories. This policy explains how your data is handled — in short, <span class="font-semibold text-blue-700">your data stays entirely on your device</span>.
                     </p>
                 </div>
             </section>
 
             <!-- What Data Is Collected -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">What Data Is Collected</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-400">
-                    <p class="text-gray-700 mb-4">Mark Buddy does <span class="font-semibold text-green-700">not collect or transmit any personal data</span>. All functionality runs locally within your browser. The following information is stored <span class="font-semibold text-blue-700">only on your device</span> using Chrome's built-in APIs:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">What Data Is Collected</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-blue-400">
+                    <p class="text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base">Mark Buddy does <span class="font-semibold text-green-700">not collect or transmit any personal data</span>. All functionality runs locally within your browser. The following information is stored <span class="font-semibold text-blue-700">only on your device</span> using Chrome's built-in APIs:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm sm:text-base">
                         <li>Your bookmarks (titles, URLs, folder structure)</li>
                         <li>Categories you create</li>
                         <li>Your associations between bookmarks and categories</li>
@@ -76,51 +76,51 @@
             </section>
 
             <!-- Data Handling & Storage -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Data Handling & Storage</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-400">
-                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Data Handling & Storage</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-green-400">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base">
                         <li>No data is sent to any server — <span class="font-semibold text-green-700">not even ours</span></li>
                         <li>No analytics, tracking, or telemetry is used</li>
                         <li>The developer (or anyone else) <span class="font-semibold text-blue-700">cannot access your data</span></li>
                         <li>Data is stored using Chrome's secure local storage APIs</li>
                     </ul>
-                    <div class="bg-blue-50 rounded p-4 mt-4">
+                    <div class="bg-blue-50 rounded p-3 sm:p-4 mt-3 sm:mt-4 text-xs sm:text-base">
                         <span class="font-semibold text-blue-700">Any exporting of data</span> (e.g., to .txt or .mrk formats) must be initiated manually by you. <span class="text-gray-700">No automatic transmission occurs.</span>
                     </div>
                 </div>
             </section>
 
             <!-- Permissions Used -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Permissions Used</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-400">
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Permissions Used</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-yellow-400">
                     <ul class="divide-y divide-gray-100">
-                        <li class="py-2 flex items-start">
+                        <li class="py-2 flex flex-col sm:flex-row items-start">
                             <span class="font-semibold text-blue-700 w-32">bookmarks</span>
-                            <span class="ml-2 text-gray-700">To read, organize, and manage your bookmarks</span>
+                            <span class="ml-0 sm:ml-2 text-gray-700">To read, organize, and manage your bookmarks</span>
                         </li>
-                        <li class="py-2 flex items-start">
+                        <li class="py-2 flex flex-col sm:flex-row items-start">
                             <span class="font-semibold text-blue-700 w-32">storage</span>
-                            <span class="ml-2 text-gray-700">To save your categories and settings locally</span>
+                            <span class="ml-0 sm:ml-2 text-gray-700">To save your categories and settings locally</span>
                         </li>
-                        <li class="py-2 flex items-start">
+                        <li class="py-2 flex flex-col sm:flex-row items-start">
                             <span class="font-semibold text-blue-700 w-32">activeTab</span>
-                            <span class="ml-2 text-gray-700">To get the current tab info when bookmarking</span>
+                            <span class="ml-0 sm:ml-2 text-gray-700">To get the current tab info when bookmarking</span>
                         </li>
-                        <li class="py-2 flex items-start">
+                        <li class="py-2 flex flex-col sm:flex-row items-start">
                             <span class="font-semibold text-blue-700 w-32">contextMenus</span>
-                            <span class="ml-2 text-gray-700">To provide right-click options for easier use</span>
+                            <span class="ml-0 sm:ml-2 text-gray-700">To provide right-click options for easier use</span>
                         </li>
                     </ul>
                 </div>
             </section>
 
             <!-- Security -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Security</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-400">
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Security</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-green-400">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm sm:text-base">
                         <li>Your data is <span class="font-semibold text-green-700">never transmitted over the internet</span></li>
                         <li>All data remains on your local device</li>
                         <li>We rely on Chrome's built-in security mechanisms to protect your information</li>
@@ -129,10 +129,10 @@
             </section>
 
             <!-- Your Control -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Your Control</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-400">
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Your Control</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-blue-400">
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm sm:text-base">
                         <li>You can export your data manually</li>
                         <li>You can clear stored data via Chrome settings</li>
                         <li>You can uninstall the extension at any time</li>
@@ -141,26 +141,26 @@
             </section>
 
             <!-- Policy Updates -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Policy Updates</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-400">
-                    <p class="text-gray-700">If this privacy policy is updated, we will revise the "Last Updated" date above. Since no external communications occur, you will need to check this page for any changes.</p>
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Policy Updates</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-yellow-400">
+                    <p class="text-gray-700 text-sm sm:text-base">If this privacy policy is updated, we will revise the "Last Updated" date above. Since no external communications occur, you will need to check this page for any changes.</p>
                 </div>
             </section>
 
             <!-- Contact -->
-            <section class="mb-10">
-                <h2 class="text-xl font-bold text-blue-800 mb-3">Contact</h2>
-                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-400">
-                    <p class="text-gray-700">Questions? You can contact us through the <a href="https://chrome.google.com/webstore/detail/mark-buddy/" class="text-blue-600 underline hover:text-blue-800">Chrome Web Store listing</a>.</p>
+            <section class="mb-8 sm:mb-10">
+                <h2 class="text-lg sm:text-xl font-bold text-blue-800 mb-2 sm:mb-3">Contact</h2>
+                <div class="bg-white rounded-lg shadow p-4 sm:p-6 border-l-4 border-blue-400">
+                    <p class="text-gray-700 text-sm sm:text-base">Questions? You can contact us through the <a href="https://chrome.google.com/webstore/detail/mark-buddy/" class="text-blue-600 underline hover:text-blue-800">Chrome Web Store listing</a>.</p>
                 </div>
             </section>
         </main>
 
         <!-- Footer -->
         <footer class="bg-white border-t mt-12">
-            <div class="max-w-3xl mx-auto px-4 py-6">
-                <p class="text-center text-gray-500">
+            <div class="max-w-3xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
+                <p class="text-center text-gray-500 text-xs sm:text-base">
                     © 2024 Mark Buddy. All rights reserved.
                 </p>
             </div>
