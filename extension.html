@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Buddy Extension Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="extension.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'pulse-soft': 'pulseSoft 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.8' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        .gradient-bg:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+        }
+        
+        /* Gallery Styles */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .gallery-viewport {
+            overflow: hidden;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        .gallery-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+        
+        .gallery-item {
+            flex: none;
+            padding: 0 12px;
+        }
+        
+        .gallery-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .gallery-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .gallery-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        
+        .video-card {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            min-height: 160px;
+        }
+        
+        .video-card:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+        }
+        
+        .video-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .video-link:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: white;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            color: #374151;
+        }
+        
+        .gallery-nav:hover:not(:disabled) {
+            background: #f59e0b;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .gallery-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .gallery-nav.prev {
+            left: -24px;
+        }
+        
+        .gallery-nav.next {
+            right: -24px;
+        }
+        
+        /* Indicators */
+        .gallery-indicators {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-dot.active {
+            background: #f59e0b;
+            transform: scale(1.5);
+        }
+        
+        .gallery-dot:hover {
+            background: #9ca3af;
+        }
+        
+        .gallery-dot.active:hover {
+            background: #d97706;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        
+        .section-subtitle {
+            color: #6b7280;
+            font-size: 16px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-nav {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .gallery-nav.prev {
+                left: -20px;
+            }
+            
+            .gallery-nav.next {
+                right: -20px;
+            }
+            
+            .gallery-image {
+                height: 160px;
+            }
+            
+            .gallery-content {
+                padding: 16px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-nav.prev {
+                left: -16px;
+            }
+            
+            .gallery-nav.next {
+                right: -16px;
+            }
+            
+            .gallery-item {
+                padding: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-800 antialiased min-h-screen">
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-slate-800 transition-transform hover:scale-105">
+                <span class="text-amber-500">M</span>ark <span class="text-amber-500">B</span>uddy
+            </a>
+            <a href="#" class="gradient-bg text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                Get Extension
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-7xl">
+        <!-- Hero Section -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
+                Extension Gallery
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Explore Mark Buddy's powerful features through screenshots and videos
+            </p>
+        </div>
+
+        <!-- Screenshots Section -->
+        <section class="mb-20 animate-slide-up">
+            <div class="section-header">
+                <h2 class="section-title">Screenshots</h2>
+                <p class="section-subtitle">See Mark Buddy in action across different modes</p>
+            </div>
+            
+            <!-- General Screenshots -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">General Features</h3>
+                <div id="general-gallery" class="gallery-container"></div>
+            </div>
+            
+            <!-- Dark Mode Screenshots -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Dark Mode</h3>
+                <div id="dark-gallery" class="gallery-container"></div>
+            </div>
+            
+            <!-- Light Mode Screenshots -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold mb-6 text-center text-slate-700">Light Mode</h3>
+                <div id="light-gallery" class="gallery-container"></div>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section class="animate-slide-up">
+            <div class="section-header">
+                <h2 class="section-title">Video Tutorials</h2>
+                <p class="section-subtitle">Learn how to use Mark Buddy effectively</p>
+            </div>
+            <div id="video-gallery" class="gallery-container"></div>
+        </section>
+    </main>
+
+    <script src="extension.js"></script>
+</body>
+</html>
