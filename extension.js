@@ -530,8 +530,8 @@ const galleries = {
         { src: 'photos/light-mode/help.png', title: 'Help section' },
     ],
     videos: [
-        { link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', title: 'Introduction to Mark Buddy' },
-        { link: 'https://www.youtube.com/watch?v=3GwjfUFyY6M', title: 'How to Use Mark Buddy' },
+        // { link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', title: 'Introduction to Mark Buddy' },
+        { link: 'https://youtu.be/wsqqn36c8WU', title: 'Quick demo of Mark Buddy' },
     ]
 };
 
