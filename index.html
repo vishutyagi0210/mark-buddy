@@ -377,11 +377,30 @@
     </header>
 
     <main>
-        <section id="hero" class="py-20 md:py-32 bg-gradient-to-br from-stone-100 to-stone-200">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-4 hover-scale inline-block">Your Zero-Friction Bookmark Assistant!</h1>
-                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">After countless hours of managing open tabs and losing valuable links, I decided enough was enough. I created Mark Buddy, a private in-browser extension designed to bring order to your digital life with zero friction.</p>
-                <a href="#features" class="gradient-bg text-white font-semibold px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-lg inline-block">See How It Works</a>
+        <section id="hero" class="py-16 md:py-32 bg-gradient-to-br from-stone-100 to-stone-200 relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute -top-24 -right-24 w-96 h-96 bg-amber-100 rounded-full opacity-50 blur-3xl"></div>
+                <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-50 rounded-full opacity-50 blur-3xl"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 sm:px-6 relative">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 hover-scale inline-block leading-tight">
+                        Your Zero-Friction Bookmark Assistant!
+                    </h1>
+                    <p class="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+                        After countless hours of managing open tabs and losing valuable links, I decided enough was enough. I created Mark Buddy, a private in-browser extension designed to bring order to your digital life with zero friction.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#features" class="gradient-bg text-white font-semibold px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-lg inline-block w-full sm:w-auto">
+                            See How It Works
+                        </a>
+                        <a href="extension.html" class="bg-white text-slate-800 font-semibold px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-lg inline-block w-full sm:w-auto border border-slate-200">
+                            Get Started Free
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
