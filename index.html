@@ -274,6 +274,53 @@
                 padding: 0 1rem;
             }
         }
+
+        .video-slide .bg-white {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-slide h3 {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            line-height: 1.4;
+        }
+
+        .video-slide p {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .video-slide {
+                padding: 0.5rem;
+            }
+            
+            .video-slide .bg-white {
+                padding: 1rem;
+            }
+            
+            .video-slide h3 {
+                margin-bottom: 0.75rem;
+            }
+            
+            .video-slide p {
+                margin-top: 0.75rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .video-slide .bg-white {
+                padding: 1.5rem;
+            }
+            
+            .video-slide h3 {
+                margin-bottom: 1rem;
+            }
+            
+            .video-slide p {
+                margin-top: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-stone-50 to-stone-100 text-slate-800 antialiased">
@@ -785,56 +832,56 @@ const videoData = [
     {
         title: "Adding a Bookmark",
         type: "youtube",
-        source: "video/demo.webm#t=31,60",
-        timestamp: "0:00-0:30"
+        source: "Uu8-8-0mfl4",
+        description: "Learn how to quickly add and organize your bookmarks with Mark Buddy's intuitive interface."
     },
     {
         title: "Adding a New Category",
         type: "local",
         source: "video/demo.webm#t=31,60",
-        timestamp: "0:31-1:00"
+        description: "Create custom categories to better organize your bookmarks and improve accessibility."
     },
     {
         title: "Download",
         type: "local",
         source: "video/demo.webm#t=61,102",
-        timestamp: "1:01-1:42"
+        description: "Export your bookmarks in various formats for easy sharing and backup."
     },
     {
         title: "Delete",
         type: "local",
         source: "video/demo.webm#t=103,125",
-        timestamp: "1:43-2:05"
+        description: "Efficiently manage your bookmarks by removing outdated or unnecessary links."
     },
     {
         title: "Share Your Curated Data",
         type: "local",
         source: "video/demo.webm#t=126,268",
-        timestamp: "2:06-4:28"
+        description: "Share your organized bookmarks with team members or across your devices seamlessly."
     },
     {
         title: "Filter Download",
         type: "local",
         source: "video/demo.webm#t=269,330",
-        timestamp: "4:29-5:30"
+        description: "Download specific categories or filtered sets of bookmarks for targeted sharing."
     },
     {
         title: "Filter Delete",
         type: "local",
         source: "video/demo.webm#t=331,375",
-        timestamp: "5:31-6:15"
+        description: "Bulk delete bookmarks based on categories, dates, or custom filters."
     },
     {
         title: "Full Migration",
         type: "local",
         source: "video/demo.webm#t=376,470",
-        timestamp: "6:16-7:50"
+        description: "Transfer your entire bookmark library between browsers or devices with ease."
     },
     {
         title: "End",
         type: "local",
         source: "video/demo.webm#t=471,540",
-        timestamp: "7:51-9:00"
+        description: "Complete overview of Mark Buddy's features and capabilities."
     }
 ];
 
@@ -858,10 +905,10 @@ function generateVideoSlide(video) {
 
     return `
         <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
-            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                <h3 class="text-xl font-semibold mb-4">${video.title}</h3>
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                <h3 class="text-xl font-semibold mb-3">${video.title}</h3>
                 ${videoContent}
-                <p class="text-slate-600 mt-4">${video.timestamp}</p>
+                <p class="text-slate-600 mt-4 text-sm md:text-base line-clamp-2 md:line-clamp-3 flex-grow">${video.description}</p>
             </div>
         </div>
     `;
