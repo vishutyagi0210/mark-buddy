@@ -149,6 +149,131 @@
         @media (min-width: 768px) {
             .mobile-menu-bg { display: none !important; }
         }
+
+        /* Updated Video Carousel Styles */
+        .video-carousel {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            touch-action: pan-x;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 0 2rem;
+        }
+
+        .video-carousel-container {
+            display: flex;
+            width: 100%;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .video-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+            opacity: 0.5;
+            transform: scale(0.9);
+        }
+
+        .video-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        .carousel-nav {
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .carousel-nav:hover {
+            background: white;
+        }
+
+        .video-carousel:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background-color: #f59e0b;
+            transform: scale(1.2);
+        }
+
+        @media (min-width: 768px) {
+            .video-slide {
+                flex: 0 0 50%;
+            }
+            
+            .carousel-nav {
+                opacity: 1;
+                width: 3.5rem;
+                height: 3.5rem;
+                transition: background-color 0.3s ease;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .video-slide {
+                flex: 0 0 33.333%;
+            }
+
+            .video-carousel-container {
+                padding: 2rem 0;
+            }
+
+            .video-slide {
+                transform: scale(0.85);
+                opacity: 0.4;
+            }
+
+            .video-slide.active {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+
+            .video-slide.active .bg-white {
+                border: 2px solid #f59e0b;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-nav {
+                display: none;
+            }
+            
+            .video-slide {
+                padding: 0.5rem;
+            }
+
+            .video-carousel {
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-stone-50 to-stone-100 text-slate-800 antialiased">
@@ -231,6 +356,161 @@
                     <div class="md:w-2/3 bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                         <div id="feature-content" class="fade-in">
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="video-demo" class="py-16 md:py-24 bg-gradient-to-br from-stone-100 to-stone-200">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold hover-scale inline-block">See Mark Buddy in Action</h2>
+                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto">Watch how Mark Buddy transforms your bookmark management experience</p>
+                </div>
+                
+                <div class="relative">
+                    <!-- Video Carousel -->
+                    <div class="video-carousel overflow-hidden">
+                        <div class="video-carousel-container flex transition-transform duration-500 ease-out">
+                            <!-- Adding a bookmark -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Adding a Bookmark</h3>
+                                    <div class="relative w-full" style="padding-top: 56.25%;">
+                                        <iframe 
+                                            class="absolute top-0 left-0 w-full h-full rounded-lg"
+                                            src="https://www.youtube.com/embed/Uu8-8-0mfl4?autoplay=1&mute=1"
+                                            title="Adding a Bookmark"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                    <p class="text-slate-600 mt-4">0:00-0:30</p>
+                                </div>
+                            </div>
+
+                            <!-- Adding a new category -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Adding a New Category</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=31,60" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">0:31-1:00</p>
+                                </div>
+                            </div>
+
+                            <!-- Download -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Download</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=61,102" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">1:01-1:42</p>
+                                </div>
+                            </div>
+
+                            <!-- Delete -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Delete</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=103,125" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">1:43-2:05</p>
+                                </div>
+                            </div>
+
+                            <!-- Share your curated data -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Share Your Curated Data</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=126,268" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">2:06-4:28</p>
+                                </div>
+                            </div>
+
+                            <!-- Filter download -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Filter Download</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=269,330" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">4:29-5:30</p>
+                                </div>
+                            </div>
+
+                            <!-- Filter delete -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Filter Delete</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=331,375" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">5:31-6:15</p>
+                                </div>
+                            </div>
+
+                            <!-- Full migration -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">Full Migration</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=376,470" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">6:16-7:50</p>
+                                </div>
+                            </div>
+
+                            <!-- End -->
+                            <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <h3 class="text-xl font-semibold mb-4">End</h3>
+                                    <video class="w-full rounded-lg" controls>
+                                        <source src="video/demo.webm#t=471,540" type="video/webm">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <p class="text-slate-600 mt-4">7:51-9:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button class="carousel-nav prev absolute top-1/2 -translate-y-1/2 left-0 bg-white/80 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg transition-all duration-300 z-10 -translate-x-1/2" aria-label="Previous video">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button class="carousel-nav next absolute top-1/2 -translate-y-1/2 right-0 bg-white/80 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg transition-all duration-300 z-10 translate-x-1/2" aria-label="Next video">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <!-- Pagination Dots -->
+                    <div class="flex justify-center mt-8 space-x-2">
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 1"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 2"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 3"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 4"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 5"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 6"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 7"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 8"></button>
+                        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" aria-label="Go to slide 9"></button>
                     </div>
                 </div>
             </div>
@@ -499,6 +779,388 @@
     });
 </script>
 
+<script>
+// Video Data Configuration
+const videoData = [
+    {
+        title: "Adding a Bookmark",
+        type: "youtube",
+        source: "video/demo.webm#t=31,60",
+        timestamp: "0:00-0:30"
+    },
+    {
+        title: "Adding a New Category",
+        type: "local",
+        source: "video/demo.webm#t=31,60",
+        timestamp: "0:31-1:00"
+    },
+    {
+        title: "Download",
+        type: "local",
+        source: "video/demo.webm#t=61,102",
+        timestamp: "1:01-1:42"
+    },
+    {
+        title: "Delete",
+        type: "local",
+        source: "video/demo.webm#t=103,125",
+        timestamp: "1:43-2:05"
+    },
+    {
+        title: "Share Your Curated Data",
+        type: "local",
+        source: "video/demo.webm#t=126,268",
+        timestamp: "2:06-4:28"
+    },
+    {
+        title: "Filter Download",
+        type: "local",
+        source: "video/demo.webm#t=269,330",
+        timestamp: "4:29-5:30"
+    },
+    {
+        title: "Filter Delete",
+        type: "local",
+        source: "video/demo.webm#t=331,375",
+        timestamp: "5:31-6:15"
+    },
+    {
+        title: "Full Migration",
+        type: "local",
+        source: "video/demo.webm#t=376,470",
+        timestamp: "6:16-7:50"
+    },
+    {
+        title: "End",
+        type: "local",
+        source: "video/demo.webm#t=471,540",
+        timestamp: "7:51-9:00"
+    }
+];
+
+// Function to generate video slide HTML
+function generateVideoSlide(video) {
+    const videoContent = video.type === 'youtube' 
+        ? `<div class="relative w-full" style="padding-top: 56.25%;">
+            <iframe 
+                class="absolute top-0 left-0 w-full h-full rounded-lg"
+                src="https://www.youtube.com/embed/${video.source}?autoplay=1&mute=1&enablejsapi=1"
+                title="${video.title}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+           </div>`
+        : `<video class="w-full rounded-lg" controls>
+            <source src="${video.source}" type="video/webm">
+            Your browser does not support the video tag.
+           </video>`;
+
+    return `
+        <div class="video-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                <h3 class="text-xl font-semibold mb-4">${video.title}</h3>
+                ${videoContent}
+                <p class="text-slate-600 mt-4">${video.timestamp}</p>
+            </div>
+        </div>
+    `;
+}
+
+// Function to initialize video carousel
+function initializeVideoCarousel() {
+    const carouselContainer = document.querySelector('.video-carousel-container');
+    
+    // Generate and insert video slides
+    carouselContainer.innerHTML = videoData.map(generateVideoSlide).join('');
+    
+    // Generate and insert pagination dots
+    const dotsContainer = document.querySelector('.flex.justify-center.mt-8.space-x-2');
+    dotsContainer.innerHTML = videoData.map((_, index) => `
+        <button class="carousel-dot w-3 h-3 rounded-full bg-slate-300 transition-all duration-300" 
+                aria-label="Go to slide ${index + 1}"></button>
+    `).join('');
+}
+
+// Initialize the carousel when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeVideoCarousel();
+    
+    const carousel = document.querySelector('.video-carousel-container');
+    const slides = document.querySelectorAll('.video-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.querySelector('.carousel-nav.prev');
+    const nextBtn = document.querySelector('.carousel-nav.next');
+    
+    let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
+    let slidesPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    let isAnimating = false;
+    
+    // Function to pause all YouTube videos
+    function pauseAllVideos() {
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            if (iframe.src.includes('youtube.com')) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            }
+        });
+    }
+    
+    // Set initial active states
+    updateActiveStates();
+    
+    function updateActiveStates() {
+        slides.forEach((slide, index) => {
+            const wasActive = slide.classList.contains('active');
+            slide.classList.toggle('active', index === currentIndex);
+            
+            // If the slide was active and is no longer active, pause its video
+            if (wasActive && index !== currentIndex) {
+                const iframe = slide.querySelector('iframe');
+                if (iframe && iframe.src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            }
+        });
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+
+        // Center the active slide on desktop
+        if (window.innerWidth >= 1024) {
+            const slideWidth = slides[0].offsetWidth;
+            const gap = parseInt(getComputedStyle(carousel).gap);
+            const offset = currentIndex * (slideWidth + gap);
+            const centerOffset = (carousel.offsetWidth - slideWidth) / 2;
+            carousel.style.transform = `translateX(calc(-${offset}px + ${centerOffset}px))`;
+        }
+    }
+    
+    function updateCarousel() {
+        if (isAnimating) return;
+        
+        const slideWidth = slides[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(carousel).gap);
+        let offset;
+        
+        if (window.innerWidth >= 1024) {
+            // Center the active slide on desktop
+            offset = currentIndex * (slideWidth + gap);
+            const centerOffset = (carousel.offsetWidth - slideWidth) / 2;
+            offset = offset - centerOffset;
+        } else {
+            offset = currentIndex * (slideWidth + gap);
+        }
+        
+        isAnimating = true;
+        carousel.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        carousel.style.transform = `translateX(-${offset}px)`;
+        
+        // Pause all videos when transitioning
+        pauseAllVideos();
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+        
+        updateActiveStates();
+    }
+    
+    function goToSlide(index) {
+        if (isAnimating) return;
+        
+        const newIndex = Math.max(0, Math.min(index, slides.length - 1));
+        if (newIndex === currentIndex) return;
+        
+        currentIndex = newIndex;
+        updateCarousel();
+    }
+
+    // Mouse events for laptop/trackpad
+    carousel.addEventListener('mousedown', (e) => {
+        if (isAnimating) return;
+        
+        startX = e.clientX;
+        isDragging = true;
+        carousel.style.transition = 'none';
+        carousel.style.cursor = 'grabbing';
+        
+        // Store the current translate value
+        const transform = window.getComputedStyle(carousel).transform;
+        const matrix = new DOMMatrix(transform);
+        prevTranslate = matrix.m41;
+        currentTranslate = prevTranslate;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging || isAnimating) return;
+        
+        const currentX = e.clientX;
+        const diff = currentX - startX;
+        const slideWidth = slides[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(carousel).gap);
+        
+        // Calculate the new translate value
+        let newTranslate = prevTranslate + diff;
+        
+        // Add resistance at the edges
+        if (currentIndex === 0 && newTranslate > 0) {
+            newTranslate = newTranslate * 0.3;
+        } else if (currentIndex === slides.length - 1 && newTranslate < -(slides.length - 1) * (slideWidth + gap)) {
+            const maxTranslate = -(slides.length - 1) * (slideWidth + gap);
+            const overflow = newTranslate - maxTranslate;
+            newTranslate = maxTranslate + (overflow * 0.3);
+        }
+        
+        currentTranslate = newTranslate;
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (!isDragging || isAnimating) return;
+        
+        isDragging = false;
+        carousel.style.cursor = 'grab';
+        const slideWidth = slides[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(carousel).gap);
+        const totalWidth = slideWidth + gap;
+        
+        // Calculate the direction and distance of the drag
+        const diff = currentTranslate - prevTranslate;
+        const threshold = totalWidth * 0.3; // 30% of slide width threshold
+        
+        // Only move one slide at a time
+        if (Math.abs(diff) > threshold) {
+            const direction = diff > 0 ? -1 : 1;
+            goToSlide(currentIndex + direction);
+        } else {
+            // Return to current slide if threshold not met
+            currentTranslate = prevTranslate;
+            updateCarousel();
+        }
+    });
+
+    // Add mouse leave event
+    document.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            carousel.style.cursor = 'grab';
+            currentTranslate = prevTranslate;
+            updateCarousel();
+        }
+    });
+    
+    // Navigation buttons
+    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // Touch events for mobile
+    carousel.addEventListener('touchstart', (e) => {
+        if (isAnimating) return;
+        
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        carousel.style.transition = 'none';
+        
+        // Store the current translate value
+        const transform = window.getComputedStyle(carousel).transform;
+        const matrix = new DOMMatrix(transform);
+        prevTranslate = matrix.m41;
+        currentTranslate = prevTranslate;
+    });
+    
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging || isAnimating) return;
+        
+        const currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+        const slideWidth = slides[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(carousel).gap);
+        
+        // Calculate the new translate value
+        let newTranslate = prevTranslate + diff;
+        
+        // Add resistance at the edges
+        if (currentIndex === 0 && newTranslate > 0) {
+            newTranslate = newTranslate * 0.3;
+        } else if (currentIndex === slides.length - 1 && newTranslate < -(slides.length - 1) * (slideWidth + gap)) {
+            const maxTranslate = -(slides.length - 1) * (slideWidth + gap);
+            const overflow = newTranslate - maxTranslate;
+            newTranslate = maxTranslate + (overflow * 0.3);
+        }
+        
+        currentTranslate = newTranslate;
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
+    });
+    
+    carousel.addEventListener('touchend', () => {
+        if (!isDragging || isAnimating) return;
+        
+        isDragging = false;
+        const slideWidth = slides[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(carousel).gap);
+        const totalWidth = slideWidth + gap;
+        
+        // Calculate the direction and distance of the swipe
+        const diff = currentTranslate - prevTranslate;
+        const threshold = totalWidth * 0.3; // 30% of slide width threshold
+        
+        // Only move one slide at a time
+        if (Math.abs(diff) > threshold) {
+            const direction = diff > 0 ? -1 : 1;
+            goToSlide(currentIndex + direction);
+        } else {
+            // Return to current slide if threshold not met
+            currentTranslate = prevTranslate;
+            updateCarousel();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (isAnimating) return;
+        
+        if (e.key === 'ArrowLeft') {
+            goToSlide(currentIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+            goToSlide(currentIndex + 1);
+        }
+    });
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            slidesPerView = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+            updateCarousel();
+        }, 250);
+    });
+
+    // Set initial cursor style
+    carousel.style.cursor = 'grab';
+
+    // Initialize carousel
+    updateCarousel();
+
+    // Update YouTube iframe src to include enablejsapi
+    document.querySelectorAll('iframe[src*="youtube.com"]').forEach(iframe => {
+        const src = iframe.src;
+        iframe.src = src + (src.includes('?') ? '&' : '?') + 'enablejsapi=1';
+    });
+});
+</script>
 
 </body>
 </html>
