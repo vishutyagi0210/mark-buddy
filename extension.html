@@ -246,29 +246,29 @@
         
         /* Mobile Menu Styles */
         .mobile-menu-bg {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(30, 41, 59, 0.45);
             position: fixed;
             inset: 0;
             z-index: 50;
             display: flex;
             align-items: flex-start;
             justify-content: center;
+            transition: background 0.3s;
         }
         
         .mobile-menu {
             background: white;
-            border-radius: 24px 24px 0 0;
-            box-shadow: 0 -8px 40px rgba(0,0,0,0.18);
-            margin-top: auto;
-            width: 100%;
-            padding: 2rem 1.5rem 2rem 1.5rem;
-            animation: slideUp 0.35s cubic-bezier(0.4,0,0.2,1);
-            position: relative;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+            margin-top: 32px;
+            width: 92vw;
+            max-width: 420px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            animation: slideDown 0.35s cubic-bezier(0.4,0,0.2,1);
         }
         
         .mobile-menu.hide {
-            animation: slideDown 0.25s cubic-bezier(0.4,0,0.2,1) forwards;
+            animation: slideUp 0.25s cubic-bezier(0.4,0,0.2,1) forwards;
         }
         
         .mobile-menu-link {
@@ -277,41 +277,31 @@
             font-weight: 600;
             color: #334155;
             padding: 1rem 0;
-            border-radius: 12px;
+            border-radius: 10px;
             text-align: center;
-            transition: all 0.2s ease;
-            margin-bottom: 8px;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
         }
         
         .mobile-menu-link:hover {
             background: #f59e0b22;
             color: #d97706;
-            transform: scale(1.02);
+            transform: scale(1.04);
         }
         
         .mobile-menu-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 18px;
+            right: 18px;
             background: none;
             border: none;
             font-size: 2rem;
             color: #64748b;
             cursor: pointer;
             z-index: 10;
-            transition: all 0.2s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+            transition: color 0.2s;
         }
         
-        .mobile-menu-close:hover { 
-            color: #f59e0b;
-            background: #f59e0b11;
-        }
+        .mobile-menu-close:hover { color: #f59e0b; }
         
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -394,9 +384,27 @@
         }
         
         @media (min-width: 768px) {
-            .mobile-menu-bg { 
-                display: none !important; 
-            }
+            .mobile-menu-bg { display: none !important; }
+        }
+        
+        /* Hamburger animation */
+        .hamburger-x #bar1 {
+            transform: translateY(6px) rotate(45deg);
+            transition: transform 0.3s;
+        }
+        .hamburger-x #bar2 {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .hamburger-x #bar3 {
+            transform: translateY(-6px) rotate(-45deg);
+            transition: transform 0.3s;
+        }
+        .hamburger #bar1, .hamburger #bar3 {
+            transition: transform 0.3s;
+        }
+        .hamburger #bar2 {
+            transition: opacity 0.2s;
         }
     </style>
 </head>
@@ -423,8 +431,13 @@
                 <a href="extension.html" class="gradient-bg text-white font-semibold px-5 py-2 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
                     Get Extension
                 </a>
-                <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">
-                    ☰
+                <button id="menu-btn" class="md:hidden text-2xl focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu-bg">
+                    <span class="sr-only">Open menu</span>
+                    <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path id="bar1" d="M4 6h16" stroke-linecap="round"/>
+                        <path id="bar2" d="M4 12h16" stroke-linecap="round"/>
+                        <path id="bar3" d="M4 18h16" stroke-linecap="round"/>
+                    </svg>
                 </button>
             </div>
         </nav>
@@ -443,16 +456,30 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-12 max-w-7xl">
-        <!-- Hero Section -->
-        <div class="text-center mb-16 animate-fade-in">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
-                Download!! 
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Enhanced Hero Section -->
+        <section class="relative flex flex-col items-center justify-center text-center py-16 md:py-24 animate-fade-in overflow-hidden">
+            <!-- Decorative background shape -->
+            <div class="absolute inset-0 pointer-events-none -z-10">
+                <div class="w-[500px] h-[500px] bg-gradient-to-br from-amber-100 via-orange-100 to-white rounded-full blur-3xl opacity-60 mx-auto mt-[-200px] md:mt-[-250px]"></div>
+            </div>
+            <span class="uppercase tracking-widest text-amber-600 font-semibold text-sm md:text-base mb-3">Now Live on Chrome Web Store</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight drop-shadow-sm">
+                Get Mark Buddy for Your Browser
             </h1>
-            <p class="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                The extension is currently in the review stage by the Google Web Store. once it's live, you will receive the URL to download it directly. Till then Explore Mark Buddy's features through screenshots and videos. 
+            <p class="text-base md:text-xl text-slate-600 max-w-xl mx-auto mb-8 md:mb-10">
+                Supercharge your bookmarks with smart organization, lightning-fast search, and seamless sharing. Experience productivity like never before!
             </p>
-        </div>
+            <a href="https://chromewebstore.google.com/detail/mark-buddy/mgianopafilmgonkdheepnambdepdkcc"
+               target="_blank"
+               class="inline-flex items-center justify-center px-7 py-4 md:px-10 md:py-5 text-lg md:text-xl font-bold text-white bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-xl hover:from-orange-500 hover:to-amber-600 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 animate-pulse-soft">
+                <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#fff"/>
+                    <path d="M21.35 11.1l-9.19-1.59c-.14-.02-.28.07-.33.21l-2.7 7.36c-.07.19.08.39.28.39h2.13c.13 0 .25-.09.29-.22l.56-1.7h3.41l.56 1.7c.04.13.16.22.29.22h2.13c.2 0 .35-.2.28-.39l-2.7-7.36a.31.31 0 0 0-.33-.21l-9.19 1.59c-.2.03-.28.28-.13.41l7.44 6.44c.13.11.33.11.46 0l7.44-6.44c.15-.13.07-.38-.13-.41z" fill="#4285F4"/>
+                </svg>
+                Add to Chrome – It's Free
+            </a>
+        </section>
 
         <!-- Screenshots Section -->
         <section class="mb-20 animate-slide-up">
@@ -496,11 +523,17 @@
     const mobileMenuBg = document.getElementById('mobile-menu-bg');
     const mobileMenu = mobileMenuBg.querySelector('.mobile-menu');
     const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+
+    menuBtn.setAttribute('aria-expanded', 'false');
 
     function openMobileMenu() {
         mobileMenuBg.classList.remove('hidden');
         mobileMenu.classList.remove('hide');
         document.body.style.overflow = 'hidden';
+        menuBtn.setAttribute('aria-expanded', 'true');
+        hamburgerIcon.classList.add('hamburger-x');
+        hamburgerIcon.classList.remove('hamburger');
     }
     
     function closeMobileMenu() {
@@ -510,18 +543,29 @@
             mobileMenu.classList.remove('hide');
             document.body.style.overflow = '';
         }, 250);
+        menuBtn.setAttribute('aria-expanded', 'false');
+        hamburgerIcon.classList.remove('hamburger-x');
+        hamburgerIcon.classList.add('hamburger');
+        menuBtn.focus();
     }
     
-    menuBtn.addEventListener('click', openMobileMenu);
+    menuBtn.addEventListener('click', function() {
+        if (mobileMenuBg.classList.contains('hidden')) {
+            openMobileMenu();
+        } else {
+            closeMobileMenu();
+        }
+    });
     mobileMenuClose.addEventListener('click', closeMobileMenu);
     mobileMenuBg.addEventListener('click', (e) => {
         if (e.target === mobileMenuBg) closeMobileMenu();
     });
-    
     // Close menu when clicking a link
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
+    // Set initial hamburger state
+    hamburgerIcon.classList.add('hamburger');
     </script>
 </body>
 </html>
