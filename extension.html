@@ -404,36 +404,43 @@
     <!-- Header -->
     <header class="glass-effect sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
             <a href="index.html" class="text-2xl font-bold text-slate-800 hover-scale">
                 <span class="text-amber-500">M</span>ark <span class="text-amber-500">B</span>uddy
             </a>
+            
             <!-- Centered nav links (desktop only) -->
             <div class="hidden md:flex flex-1 justify-center items-center space-x-6">
                 <a href="index.html#features" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Features</a>
+                <a href="index.html#video-demo" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Demo</a>
                 <a href="index.html#use-cases" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Use Cases</a>
                 <a href="index.html#why-us" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Why Us?</a>
-                <a href="privacy-policy.html" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Privacy Policy</a>
+                <a href="privacy-policy.html" class="text-slate-700 font-medium hover:text-amber-500 transition duration-300">Privacy</a>
             </div>
+            
             <!-- Right-side items -->
             <div class="flex items-center space-x-4">
-                <a href="extension.html" class="gradient-bg text-white font-semibold px-5 py-2 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">Get Extension</a>
-                <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">☰</button>
+                <a href="extension.html" class="gradient-bg text-white font-semibold px-5 py-2 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    Get Extension
+                </a>
+                <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">
+                    ☰
+                </button>
             </div>
         </nav>
-    </header>
 
-    <!-- Mobile Hamburger Menu -->
-    <div id="mobile-menu-bg" class="mobile-menu-bg hidden">
-        <div class="mobile-menu">
-            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
-            <nav class="flex flex-col space-y-2">
+        <!-- Hidden nav links (mobile dropdown) -->
+        <div id="mobile-menu-bg" class="mobile-menu-bg hidden">
+            <div class="mobile-menu relative">
+                <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
                 <a href="index.html#features" class="mobile-menu-link">Features</a>
+                <a href="index.html#video-demo" class="mobile-menu-link">Demo</a>
                 <a href="index.html#use-cases" class="mobile-menu-link">Use Cases</a>
                 <a href="index.html#why-us" class="mobile-menu-link">Why Us?</a>
-                <a href="privacy-policy.html" class="mobile-menu-link">Privacy Policy</a>
-            </nav>
+                <a href="privacy-policy.html" class="mobile-menu-link">Privacy</a>
+            </div>
         </div>
-    </div>
+    </header>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12 max-w-7xl">
@@ -489,11 +496,13 @@
     const mobileMenuBg = document.getElementById('mobile-menu-bg');
     const mobileMenu = mobileMenuBg.querySelector('.mobile-menu');
     const mobileMenuClose = document.getElementById('mobile-menu-close');
+
     function openMobileMenu() {
         mobileMenuBg.classList.remove('hidden');
         mobileMenu.classList.remove('hide');
         document.body.style.overflow = 'hidden';
     }
+    
     function closeMobileMenu() {
         mobileMenu.classList.add('hide');
         setTimeout(() => {
@@ -502,11 +511,14 @@
             document.body.style.overflow = '';
         }, 250);
     }
+    
     menuBtn.addEventListener('click', openMobileMenu);
     mobileMenuClose.addEventListener('click', closeMobileMenu);
     mobileMenuBg.addEventListener('click', (e) => {
         if (e.target === mobileMenuBg) closeMobileMenu();
     });
+    
+    // Close menu when clicking a link
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
