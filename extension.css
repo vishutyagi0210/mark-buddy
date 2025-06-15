@@ -19,6 +19,7 @@
     max-width: 340px;
     min-height: 220px;
 }
+
 @media (max-width: 640px) {
     .gallery-card { min-width: 90vw; max-width: 95vw; }
 }

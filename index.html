@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
     <!-- Visualization & Content Choices: 
         1. Report Info: Key Features -> Goal: Organize/Inform -> Viz: Interactive Tabs -> Interaction: Click tabs to reveal feature details -> Justification: Breaks down complex features into digestible, user-controlled chunks, making information less overwhelming.
         2. Report Info: Business Use Cases -> Goal: Inform/Organize -> Viz: Interactive Persona Buttons -> Interaction: Click a persona (e.g., 'Project Manager') to see a tailored benefit -> Justification: Personalizes the value proposition, making it more relatable and impactful for different user segments.
@@ -324,7 +325,7 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-stone-50 to-stone-100 text-slate-800 antialiased">
-
+    <div id = "main">
     <header class="glass-effect sticky top-0 z-50">
         <!-- <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-slate-800 hover-scale">
@@ -487,7 +488,7 @@
                                     <div class="relative w-full" style="padding-top: 56.25%;">
                                         <iframe 
                                             class="absolute top-0 left-0 w-full h-full rounded-lg"
-                                            src="#"
+                                            src="https://youtu.be/2jBZmB09_Zw"
                                             title="Adding a Bookmark"
                                             frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -503,7 +504,7 @@
                                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                                     <h3 class="text-xl font-semibold mb-4">Adding a New Category</h3>
                                     <video class="w-full rounded-lg" controls>
-                                        <source src="video/demo.webm#t=31,60" type="video/webm">
+                                        <source src="https://youtu.be/2jBZmB09_Zw" type="video/webm">
                                         Your browser does not support the video tag.
                                     </video>
                                     <p class="text-slate-600 mt-4">0:31-1:00</p>
@@ -704,7 +705,7 @@
             <a href="extension.html" class="gradient-bg text-white font-semibold px-8 py-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-block">Get Mark Buddy for Chrome</a>
         </div>
     </footer>
-
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -891,58 +892,52 @@
 // Video Data Configuration
 const videoData = [
     {
+        title: "Import/Export/Share your bookmarks with anyone directly as .mrk format",
+        type: "youtube",
+        source: "7-vyqERybG4",
+        description: "Transfer your entire bookmark library between browsers or devices with ease. Extension Shortcut (ctrl+q)"
+    },
+    {
         title: "Adding a Bookmark",
         type: "youtube",
-        source: "#",
-        description: "Learn how to quickly add and organize your bookmarks with Mark Buddy's intuitive interface."
+        source: "2jBZmB09_Zw", // Just the video ID
+        description: "Learn how to quickly add and organize your bookmarks with Mark Buddy's intuitive interface. Extension Shortcut (ctrl+q)"
     },
     {
         title: "Adding a New Category",
-        type: "local",
-        source: "#",
-        description: "Create custom categories to better organize your bookmarks and improve accessibility."
+        type: "youtube",
+        source: "aifDMnzhpno",
+        description: "Create custom categories to better organize your bookmarks and improve accessibility. Extension Shortcut (ctrl+q)"
     },
     {
-        title: "Download",
-        type: "local",
-        source: "#",
-        description: "Export your bookmarks in various formats for easy sharing and backup."
+        title: "Delete Category",
+        type: "youtube",
+        source: "xdmF9kqpbLM",
+        description: "Export your bookmarks in various formats for easy sharing and backup. Extension Shortcut (ctrl+q)"
     },
     {
-        title: "Delete",
-        type: "local",
-        source: "#",
-        description: "Efficiently manage your bookmarks by removing outdated or unnecessary links."
+        title: "Delete Filtered Data",
+        type: "youtube",
+        source: "imuHxteEJSA",
+        description: "Efficiently manage your bookmarks by removing outdated or unnecessary links. Extension Shortcut (ctrl+q)"
     },
     {
-        title: "Share Your Curated Data",
-        type: "local",
-        source: "#",
-        description: "Share your organized bookmarks with team members or across your devices seamlessly."
+        title: "Download category in .txt format",
+        type: "youtube",
+        source: "f1XlvpvzC8I",
+        description: "Share your organized bookmarks with team members or across your devices seamlessly. Extension Shortcut (ctrl+q)"
     },
     {
-        title: "Filter Download",
-        type: "local",
-        source: "#",
-        description: "Download specific categories or filtered sets of bookmarks for targeted sharing."
+        title: "Download filtered Data in .txt format",
+        type: "youtube",
+        source: "YKj1RPaowYM",
+        description: "Download specific categories or filtered sets of bookmarks for targeted sharing. Extension Shortcut (ctrl+q)"
     },
     {
-        title: "Filter Delete",
-        type: "local",
-        source: "#",
-        description: "Bulk delete bookmarks based on categories, dates, or custom filters."
-    },
-    {
-        title: "Full Migration",
-        type: "local",
-        source: "#",
-        description: "Transfer your entire bookmark library between browsers or devices with ease."
-    },
-    {
-        title: "End",
-        type: "local",
-        source: "#",
-        description: "Complete overview of Mark Buddy's features and capabilities."
+        title: "Do a full browser Migration with all of your Bookmarks",
+        type: "youtube",
+        source: "Q3Ta3kQsO0k",
+        description: "Bulk delete bookmarks based on categories, dates, or custom filters. Extension Shortcut (ctrl+q)"
     }
 ];
 
@@ -952,7 +947,7 @@ function generateVideoSlide(video) {
         ? `<div class="relative w-full" style="padding-top: 56.25%;">
             <iframe 
                 class="absolute top-0 left-0 w-full h-full rounded-lg"
-                src="https://www.youtube.com/embed/${video.source}?autoplay=1&mute=1&enablejsapi=1"
+                src="https://www.youtube.com/embed/${video.source}?enablejsapi=1"
                 title="${video.title}"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1270,6 +1265,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<!--  locomotive script cdn -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+  <script>
+    const scroll = new LocomotiveScroll({
+    el: document.querySelector('#main'),
+    smooth: true
+    });
+  </script> -->
 </body>
 </html>
 
